@@ -915,7 +915,7 @@ def get_shipment(request, shipment_id: int):
 
 # Other featues :
 
-@api.get("supplier/list/", response=List[SupplierOut])
+@api.get("/supplier/", response=List[SupplierOut])
 def list_supplier(request):
     clients = Supplier.objects.all()
     return [
@@ -996,24 +996,6 @@ def list_packaging(request):
         packaging_list.append(packaging)
     return packaging_list
 
-@api.get("supplier/list/", response=List[SupplierOut])
-def list_supplier(request):
-    clients = Supplier.objects.all()
-    return [
-        SupplierOut(
-            type=client.type,
-            firstname=client.firstname,
-            lastname=client.lastname,
-            email=client.email,
-            workphone=client.workphone,
-            phone=client.phone
-        ) for client in clients
-    ]
-
-
-
-
-
 @api.get("/stock/", response=List[stockOut])
 def list_stock(request):
     stock_instances = Stock.objects.all()
@@ -1029,7 +1011,7 @@ def list_stock(request):
     return stock_list
 
 
-@api.get("/customer/list/",response=List[customerOut])
+@api.get("/customer/",response=List[customerOut])
 def list_customer(request):
     customer_instaces=Customer.objects.all()
     custumer_list=[]
